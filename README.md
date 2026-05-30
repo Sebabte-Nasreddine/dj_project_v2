@@ -70,3 +70,4 @@ A chaque modification des modeles, relancer :
 python manage.py makemigrations
 python manage.py migrate
 ```
+# dj_project_v2
