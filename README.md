@@ -1,64 +1,36 @@
-# Application e-commerce Django avec Authentification et Docker
+# Application e-commerce Django avec Authentification
 
-Application e-commerce Django containerisée avec Docker, MySQL et prête pour déploiement cloud avec Dokploy.
+Application e-commerce Django en ajoutant l'authentification.
 
-## Fonctionnalités
+## Modifications apportées
 
+### Nouvelle application `accounts` ajoutée
+- **Inscription (signup)** : Création de nouveaux comptes utilisateur
+- **Connexion (login)** : Authentification des utilisateurs
+- **Profil** : Page protégée affichant les informations du compte
+- **Déconnexion** : Gestion de la déconnexion
 
+### Fonctionnalités incluses
+- Formulaire d'inscription avec validation d'email
+- Templates Bootstrap 5 pour l'interface utilisateur
+- Authentification basée sur Django Auth
+- Navigation responsive avec statut utilisateur
+- Redirections intelligentes après login/logout
 
-## Déploiement sur Dokploy
+### Routes disponibles
+- `/accounts/signup/` - Page d'inscription
+- `/accounts/login/` - Page de connexion
+- `/accounts/logout/` - Déconnexion
+- `/accounts/profile/` - Profil utilisateur (protégé)
+- `/products/` - Liste des produits
+- `/products/<id>/` - Détail d'un produit
+- `/admin/` - Interface d'administration
 
-### 1. Préparer l'image Docker
+### Configuration de base de données
+Le projet utilise SQLite pour la simplicité. La base de données est automatiquement créée lors de la première migration.
 
-Construire et pousser l'image vers Docker Hub:
+### Démarrage du serveur
 ```bash
-# Remplacer "username" par votre nom d'utilisateur Docker
-docker build -t username/mon-projet-django:v1 .
-docker login
-docker push username/mon-projet-django:v1
+source env_new/bin/activate
+python manage.py runserver
 ```
-
-### 2. Accéder à Dokploy
-
-- URL: http://IP_VM:3000
-
-
-### 3. Créer le projet et le service
-
-
-
-### 4. Configurer Docker Compose
-
-
-
-### 5. Configurer les variables d'environnement
-
-Dans l'onglet **Environment**, ajouter:
-```
-DJANGO_SECRET_KEY=change-this-secret-key
-DJANGO_DEBUG=1
-DJANGO_ALLOWED_HOSTS=*
-MYSQL_ROOT_PASSWORD=root
-MYSQL_DATABASE=DB_ECOMMERCE
-MYSQL_USER=django
-MYSQL_PASSWORD=django
-MYSQL_HOST=db
-MYSQL_PORT=3306
-```
-
-
-## Variables d'environnement importantes
-
-| Variable | Défaut | Description |
-|---|---|---|
-| `DJANGO_SECRET_KEY` | dev-secret-key | Clé secrète Django (À CHANGER EN PRODUCTION) |
-| `DJANGO_DEBUG` | 1 | Mode debug (1 pour dev, 0 pour prod) |
-| `DJANGO_ALLOWED_HOSTS` | localhost,127.0.0.1 | Hosts autorisés |
-| `MYSQL_DATABASE` | DB_ECOMMERCE | Nom base de données |
-| `MYSQL_USER` | django | Utilisateur MySQL |
-| `MYSQL_PASSWORD` | django | Mot de passe MySQL |
-| `MYSQL_HOST` | db | Host MySQL |
-
----
-
-**Créé pour déploiement cloud via Dokploy**
