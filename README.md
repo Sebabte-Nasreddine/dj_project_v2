@@ -1,73 +1,36 @@
-# Application e-commerce Django
+# Application e-commerce Django avec Authentification
 
-Application web développée avec Django pour gérer des produits et des catégories.
-La base de données utilisée est PostgreSQL.
+Application e-commerce Django en ajoutant l'authentification.
 
----
+## Modifications apportées
 
-## Installation
+### Nouvelle application `accounts` ajoutée
+- **Inscription (signup)** : Création de nouveaux comptes utilisateur
+- **Connexion (login)** : Authentification des utilisateurs
+- **Profil** : Page protégée affichant les informations du compte
+- **Déconnexion** : Gestion de la déconnexion
 
+### Fonctionnalités incluses
+- Formulaire d'inscription avec validation d'email
+- Templates Bootstrap 5 pour l'interface utilisateur
+- Authentification basée sur Django Auth
+- Navigation responsive avec statut utilisateur
+- Redirections intelligentes après login/logout
+
+### Routes disponibles
+- `/accounts/signup/` - Page d'inscription
+- `/accounts/login/` - Page de connexion
+- `/accounts/logout/` - Déconnexion
+- `/accounts/profile/` - Profil utilisateur (protégé)
+- `/products/` - Liste des produits
+- `/products/<id>/` - Détail d'un produit
+- `/admin/` - Interface d'administration
+
+### Configuration de base de données
+Le projet utilise SQLite pour la simplicité. La base de données est automatiquement créée lors de la première migration.
+
+### Démarrage du serveur
 ```bash
-python3 -m venv env
-source env/bin/activate
-pip install django pillow psycopg2-binary
-```
-
----
-
-## Configuration de la base de données (PostgreSQL)
-
-Créer la base de données :
-
-```bash
-psql -d postgres -c "CREATE DATABASE ecommerce_db;"
-```
-
-Dans `ecommerce/settings.py`, renseigner vos informations :
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecommerce_db',
-        'USER': 'votre_utilisateur',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
-}
-```
-
----
-
-## Lancement
-
-```bash
-python manage.py migrate
-python manage.py createsuperuser
+source env_new/bin/activate
 python manage.py runserver
 ```
-
----
-
-## Pages disponibles
-
-| Adresse | Description |
-|---|---|
-| /products/ | liste des produits |
-| /products/<id> | detail d'un produit |
-| /products/categories/ | liste des categories |
-| /products/category/<id>/ | produits d'une categorie |
-| /admin/ | interface d'administration |
-
----
-
-## Remarque
-
-A chaque modification des modeles, relancer :
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-# dj_project_v2
